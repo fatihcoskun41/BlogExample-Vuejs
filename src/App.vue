@@ -1,28 +1,46 @@
 <template>
-  <div id="app">
-    <img alt="Vue logo" src="./assets/logo.png">
-    <HelloWorld msg="Welcome to Your Vue.js App"/>
-  </div>
+  <div>
+ <form-page @data="uploadCard($event)"></form-page>
+ <list-page   v-for="(i,index) in card" :key="index" :title="i[1]" :textarea="i[0]"  :url="i[2]"></list-page>
+ 
+</div>
 </template>
 
 <script>
-import HelloWorld from './components/HelloWorld.vue'
+import FormPage from './components/FormPage'
+import ListPage from './components/ListPage.vue'
+
+
 
 export default {
   name: 'App',
-  components: {
-    HelloWorld
-  }
+  components:{
+    FormPage,
+    ListPage
+    
+   
+  },
+  data() {
+    return {
+      card:[]
+    }
+  },
+  methods: {
+    uploadCard(e){
+      this.card.push(e)
+      console.log(this.card)
+    },
+
+  },
+  
 }
 </script>
 
 <style>
-#app {
-  font-family: Avenir, Helvetica, Arial, sans-serif;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
-  text-align: center;
-  color: #2c3e50;
-  margin-top: 60px;
+div{
+  margin:0 auto;
+ width: 500px;
+
+
 }
 </style>
